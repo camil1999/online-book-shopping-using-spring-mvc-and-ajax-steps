@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Kitablar</title>
+<style>
+table, th, td {
+	border: 1px solid black;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+</style>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Ad</th>
+			</tr>
+
+		</thead>
+		<tbody>
+			<tr th:each="book : ${books}">
+				<td th:text="${book.id}"></td>
+				<td th:text="${book.name}"></td>
+			</tr>
+
+		</tbody>
+
+	</table>
+</body>
+</html>
