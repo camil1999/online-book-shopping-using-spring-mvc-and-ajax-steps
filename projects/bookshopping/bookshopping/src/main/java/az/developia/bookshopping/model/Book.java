@@ -25,4 +25,16 @@ public class Book {
 	@Getter
 	@Setter
 	private Double price;
+	@Getter
+	@Setter
+	private String author;
+	@Getter
+	@Setter
+	private Integer pageCount;
+	@Getter
+	@Setter
+	private String image;
+	@Getter
+	@Setter
+	private String username;
 }

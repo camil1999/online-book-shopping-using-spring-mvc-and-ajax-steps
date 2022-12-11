@@ -12,7 +12,13 @@
 			th:field="*{name}" /><br> <br><label for="book-description">Təsvir:</label><br>
 		<textarea id="book-description" th:field="*{description}" /></textarea><br><br>
 		<label for="book-price">Qiymət:</label><br> <input type="number" id="book-price"
-			th:field="*{price}" /> <br> <br><input type="submit" value="Qeydiyyat" />
+			th:field="*{price}" /> <br> <br>
+			<label for="book-author">Müəllif:</label> <br><input id="book-author"
+			th:field="*{author}" /><br> <br>
+			<label for="book-page-count">Səhifə sayı:</label><br> <input type="number" id="book-page-count"
+			th:field="*{pageCount}" /><br><br>
+			<input type="submit" value="Qeydiyyat" /><br>
+			
 	</form>
 </body>
 </html>
