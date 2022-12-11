@@ -9,6 +9,8 @@
 	 <form th:action="@{/books/new-book-process}" method="POST" th:object="${book}">
 	 <label for="book-name">Ad:</label>
 	 <input id="book-name" th:field="*{name}"/>
+	 <label for="book-description">Təsvir:</label>
+	 <textarea id="book-description" th:field="*{description}"/></textarea>
 	 <input type="submit" value="Qeydiyyat" />
 	 </form>
 </body>
