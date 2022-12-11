@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Ana Səhifə</title>
+<style>
+#booklist-button {
+	display: block;
+	padding: 5px 10px;
+	color: lime;
+	background-color: rgb(135, 0, 0);
+	width: 150px;
+	text-align: center;
+	border-radius: 10px;
+	text-decoration: none;
+}
+
+#booklist-button:hover {
+	background-color: rgb(135, 117, 171);
+}
+</style>
 </head>
 <body>
-	<h1>Ana Səhifəyə Xoş gəlmisiniz</h1>
+	<h1 id="name" style="color: blue">Ana Səhifəyə Xoş Gəlmisiniz</h1>
+	<a id="booklist-button" th:href="@{/books}">Kitabların siyahısı</a>
 </body>
 </html>
