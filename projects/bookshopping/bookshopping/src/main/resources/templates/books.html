@@ -5,16 +5,76 @@
 <title>Kitablar</title>
 <style>
 table, th, td {
-	border: 1px solid black;
+	border: 2px solid inherit;
 }
 
 table {
 	border-collapse: collapse;
 	width: 100%;
 }
+
+th {
+	padding: 5px;
+	background-color: graytext;
+}
+
+td {
+	padding: 5px;
+	background-color: olive;
+	font-weight: bold;
+	color: black;
+}
+
+td:hover {
+	font-weight: bold;
+	color: blue;
+	cursor: pointer;
+}
+
+#new-book-button {
+	display: block;
+	padding: 5px 10px;
+	color: LIME;
+	background-color: rgb(135, 0, 0);
+	width: 70px;
+	text-align: center;
+	border-radius: 10px;
+	text-decoration: none;
+}
+
+#new-book-button:hover {
+	background-color: rgb(135, 117, 171);
+	cursor: pointer;
+}
+
+#home-button {
+	display: block;
+	padding: 5px 10px;
+	color: lime;
+	background-color: rgb(135, 0, 0);
+	width: 70px;
+	text-align: center;
+	border-radius: 10px;
+	text-decoration: none;
+}
+
+#home-button:hover {
+	background-color: rgb(135, 117, 171);
+}
+
+#name {
+	display: block;
+	padding: 5px 10px;
+	color: white;
+	background-color: rgb(60, 179, 113)
+}
 </style>
 </head>
 <body>
+	<a id="home-button" th:href="@{/home}">Ana səhifə</a>
+	<a th:href="@{/books/new-book}" id="new-book-button">Yeni kitab</a>	
+	<h1 id="name" style="color: blue">KİTABLAR</h1>
+
 	<table>
 		<thead>
 			<tr>
