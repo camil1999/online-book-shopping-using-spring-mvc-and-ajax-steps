@@ -22,4 +22,7 @@ public class Book {
 	@Getter
 	@Setter
 	private String description;
+	@Getter
+	@Setter
+	private Double price;
 }
