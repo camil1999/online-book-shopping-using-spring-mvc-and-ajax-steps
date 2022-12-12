@@ -49,21 +49,6 @@ td:hover {
 	cursor: pointer;
 }
 
-#home-button {
-	display: block;
-	padding: 5px 10px;
-	color: lime;
-	background-color: rgb(135, 0, 0);
-	width: 150px;
-	text-align: center;
-	border-radius: 10px;
-	text-decoration: none;
-}
-
-#home-button:hover {
-	background-color: rgb(135, 117, 171);
-}
-
 #name {
 	display: block;
 	padding: 5px 10px;
@@ -91,8 +76,8 @@ a {
 </script>
 </head>
 <body>
-<div th:replace="menu :: menu"></div>
-	<a id="home-button" th:href="@{/}">Ana səhifə</a>
+	<div th:replace="menu :: menu"></div>
+
 	<a th:href="@{/books/new-book}" id="new-book-button">Yeni kitab</a>
 
 	<h1 id="name" style="text-align: center; color: blue">Kitablar</h1>
