@@ -33,7 +33,6 @@ public class BookController {
 		model.addAttribute("book", book);
 		return "new-book";
 	}
-	
 
 	@PostMapping(path = "/new-book-process")
 	public String saveBook(@ModelAttribute(name = "book") Book book, Model model) {
@@ -45,10 +44,19 @@ public class BookController {
 
 		return "redirect:/books";
 	}
-	@GetMapping(path = "/books/delete/{id}")
-	public String deleteBook(@PathVariable(name="id")Integer id,Model model) {
-		
-		return "books";
+
+	@GetMapping(path = "/delete/{id}")
+	public String deleteBook(@PathVariable(name = "id") Integer id, Model model) {
+		boolean bookExists = bookDAO.findById(id).isPresent();
+		if (bookExists) {
+			bookDAO.deleteById(id);
+		} else {
+
+		}
+		List<Book> books = bookDAO.findAll();
+		model.addAttribute("books", books);
+
+		return "redirect:/books";
 	}
 
 }
