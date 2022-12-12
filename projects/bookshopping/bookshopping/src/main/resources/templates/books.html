@@ -120,7 +120,7 @@ a {
 				<td th:text="${book.image}"></td>
 				<td><a th:href="@{/books/delete/{id}(id=${book.id})}"
 					class="btn btn-danger"
-					onclick="return confirm('Sətiri silməyə əminsiz?')">>Sil</a> <a
+					onclick="return confirm('Kitabı silməyə əminsiniz?')">>Sil</a> <a
 					th:href="@{/books/edit/{id}(id=${book.id})}"
 					class="btn btn-primary">Redaktə</a></td>
 			</tr>
