@@ -69,13 +69,27 @@ td:hover {
 	background-color: rgb(60, 179, 113)
 }
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$('#books-table').DataTable();
+	});
+</script>
 </head>
 <body>
 	<a id="home-button" th:href="@{/}">Ana səhifə</a>
-	<a th:href="@{/books/new-book}" id="new-book-button">Yeni kitab</a>	
-	<h1 id="name" style="color: blue">KİTABLAR</h1>
+	<a th:href="@{/books/new-book}" id="new-book-button">Yeni kitab</a>
 
-	<table>
+	<h1 id="name" style="text-align: center; color: blue">Kitablar</h1>
+	<table id="books-table">
 		<thead>
 			<tr>
 				<th>ID</th>
