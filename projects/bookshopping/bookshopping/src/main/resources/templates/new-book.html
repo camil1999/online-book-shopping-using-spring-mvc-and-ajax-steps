@@ -13,6 +13,7 @@
 </style>
 </head>
 <body>
+<div th:replace="menu :: menu"></div>
 	<h1  th:text="${header}"style="text-align: center;color: green;">Yeni Kitab</h1>
 	<form th:action="@{/books/save-book-process}" method="POST"
 		th:object="${book}" id="book-register-form">
