@@ -6,59 +6,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
-table, th, td {
-	border: 2px solid maroon;
-}
 
-table {
-	border-collapse: collapse;
-	width: 100%;
-}
-
-th {
-	padding: 5px;
-	background-color: graytext;
-}
-
-td {
-	padding: 5px;
-	background-color: olive;
-	font-weight: bold;
-	color: black;
-}
-
-td:hover {
-	font-weight: bold;
-	color: blue;
-	cursor: pointer;
-}
-
-#new-book-button {
-	display: block;
-	padding: 5px 10px;
-	color: LIME;
-	background-color: rgb(135, 0, 0);
-	width: 150px;
-	text-align: center;
-	border-radius: 10px;
-	text-decoration: none;
-}
-
-#new-book-button:hover {
-	background-color: rgb(135, 117, 171);
-	cursor: pointer;
-}
-
-#name {
-	display: block;
-	padding: 5px 10px;
-	color: white;
-	background-color: rgb(60, 179, 113)
-}
-
-a {
-	margin-right: 5px;
-}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -77,42 +25,48 @@ a {
 </head>
 <body>
 	<div th:replace="menu :: menu"></div>
+	<div class="container-fluid">
 
-	<a th:href="@{/books/new-book}" id="new-book-button">Yeni kitab</a>
 
-	<h1 id="name" style="text-align: center; color: blue">Kitablar</h1>
-	<table id="books-table">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Ad</th>
-				<th>Təsvir</th>
-				<th>Qiymət</th>
-				<th>Müəllif</th>
-				<th>Səhifə sayı</th>
-				<th>Şəkil</th>
-				<th>Əməliyyatlar</th>
-			</tr>
+		<a class="btn btn-success" th:href="@{/books/new-book}">Yeni kitab</a>
+		<div style="height: 5px"></div>
+	
 
-		</thead>
-		<tbody>
-			<tr th:each="book : ${books}">
-				<td th:text="${book.id}"></td>
-				<td th:text="${book.name}"></td>
-				<td th:text="${book.description}"></td>
-				<td th:text="${book.price}"></td>
-				<td th:text="${book.author}"></td>
-				<td th:text="${book.pageCount}"></td>
-				<td th:text="${book.image}"></td>
-				<td><a th:href="@{/books/delete/{id}(id=${book.id})}"
-					class="btn btn-danger"
-					th:onclick="if(!(confirm('Kitabı silməyə əminsiniz?')))return false">Sil</a>
-					<a th:href="@{/books/edit/{id}(id=${book.id})}"
-					class="btn btn-primary">Redaktə</a></td>
-			</tr>
 
-		</tbody>
+		<table id="books-table" class="table table-hover table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Ad</th>
+					<th>Təsvir</th>
+					<th>Qiymət</th>
+					<th>Müəllif</th>
+					<th>Səhifə sayı</th>
+					<th>Şəkil</th>
+					<th>Əməliyyatlar</th>
+				</tr>
 
-	</table>
+			</thead>
+			<tbody>
+				<tr th:each="book : ${books}">
+					<td th:text="${book.id}"></td>
+					<td th:text="${book.name}"></td>
+					<td th:text="${book.description}"></td>
+					<td th:text="${book.price}"></td>
+					<td th:text="${book.author}"></td>
+					<td th:text="${book.pageCount}"></td>
+					<td th:text="${book.image}"></td>
+					<td><a th:href="@{/books/delete/{id}(id=${book.id})}"
+						class="btn btn-danger"
+						th:onclick="if(!(confirm('Kitabı silməyə əminsiniz?')))return false">Sil</a>
+						<a th:href="@{/books/edit/{id}(id=${book.id})}"
+						class="btn btn-primary">Redaktə</a></td>
+				</tr>
+
+			</tbody>
+
+		</table>
+	</div>
+
 </body>
 </html>
