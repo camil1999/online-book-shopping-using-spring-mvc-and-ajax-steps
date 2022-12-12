@@ -13,7 +13,7 @@
 </style>
 </head>
 <body>
-	<h1 style="text-align: center;">Yeni Kitab</h1>
+	<h1  th:text="${header}"style="text-align: center;color: green;">Yeni Kitab</h1>
 	<form th:action="@{/books/new-book-process}" method="POST"
 		th:object="${book}" id="book-register-form">
 
@@ -48,7 +48,7 @@
 		</div>
 
 
-		<input class="btn btn-success" type="submit" value="Qeydiyyat" /><br>
+		<input class="btn btn-success" type="submit" value="Yadda saxla" /><br>
 		<br> <a class="btn btn-primary" th:href="@{/books}">Kitabların
 			siyahısı</a>
 

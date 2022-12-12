@@ -32,10 +32,12 @@ public class BookController {
 	public String openNewBookPage(Model model) {
 		Book book = new Book();
 		model.addAttribute("book", book);
+		model.addAttribute("header", "Yeni kitab");
+
 		return "new-book";
 	}
 
-	@PostMapping(path = "/new-book-process")
+	@PostMapping(path = "/save-book-process")
 	public String saveBook(@ModelAttribute(name = "book") Book book, Model model) {
 		book.setImage("book.jpg");
 		book.setUsername("jamil");
@@ -71,6 +73,7 @@ public class BookController {
 		}
 		
 		model.addAttribute("book", book);
+		model.addAttribute("header", "Kitab redaktəsi");
 
 		return "new-book";
 	}
