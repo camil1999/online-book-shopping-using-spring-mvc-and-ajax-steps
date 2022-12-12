@@ -70,8 +70,9 @@ td:hover {
 	color: white;
 	background-color: rgb(60, 179, 113)
 }
-a{
-margin-right:5px;
+
+a {
+	margin-right: 5px;
 }
 </style>
 <script
@@ -117,8 +118,11 @@ margin-right:5px;
 				<td th:text="${book.author}"></td>
 				<td th:text="${book.pageCount}"></td>
 				<td th:text="${book.image}"></td>
-				<td><a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn btn-danger">Sil</a>
-					<a class="btn btn-primary">Redaktə</a></td>
+				<td><a th:href="@{/books/delete/{id}(id=${book.id})}"
+					class="btn btn-danger"
+					onclick="return confirm('Sətiri silməyə əminsiz?')">>Sil</a> <a
+					th:href="@{/books/edit/{id}(id=${book.id})}"
+					class="btn btn-primary">Redaktə</a></td>
 			</tr>
 
 		</tbody>
