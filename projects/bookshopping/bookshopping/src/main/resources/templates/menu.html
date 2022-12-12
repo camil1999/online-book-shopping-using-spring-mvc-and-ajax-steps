@@ -7,13 +7,19 @@
 <body>
 	<div th:fragment="menu">
 
-		<ul>
-			<li>Əsas səhifə</li>
-			<li>Kitablar</li>
-			<li>Sifarişlər</li>
-			<li>Alıcı</li>
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/}">Əsas səhifə</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/books}">Kitablar</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/orders}">Sifarişlər</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/customer}">Alıcı</a></li>
+			</ul>
+			<ul class="navbar-nav navbar-collapse justify-content-end">
+				<li><a class="nav-link" th:href="@{/login}">Giriş</a></li>
+						<li><a class="nav-link" th:href="@{/logout}">Çıxış</a></li>
+			</ul>
+		</nav>
 
-		</ul>
 
 
 	</div>
