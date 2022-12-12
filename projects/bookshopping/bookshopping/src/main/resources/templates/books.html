@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Kitablar</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
 table, th, td {
-	border: 2px solid inherit;
+	border: 2px solid maroon;
 }
 
 table {
@@ -36,7 +38,7 @@ td:hover {
 	padding: 5px 10px;
 	color: LIME;
 	background-color: rgb(135, 0, 0);
-	width: 70px;
+	width: 150px;
 	text-align: center;
 	border-radius: 10px;
 	text-decoration: none;
@@ -52,7 +54,7 @@ td:hover {
 	padding: 5px 10px;
 	color: lime;
 	background-color: rgb(135, 0, 0);
-	width: 70px;
+	width: 150px;
 	text-align: center;
 	border-radius: 10px;
 	text-decoration: none;
@@ -67,6 +69,9 @@ td:hover {
 	padding: 5px 10px;
 	color: white;
 	background-color: rgb(60, 179, 113)
+}
+a{
+margin-right:5px;
 }
 </style>
 <script
@@ -99,6 +104,7 @@ td:hover {
 				<th>Müəllif</th>
 				<th>Səhifə sayı</th>
 				<th>Şəkil</th>
+				<th>Əməliyyatlar</th>
 			</tr>
 
 		</thead>
@@ -111,6 +117,8 @@ td:hover {
 				<td th:text="${book.author}"></td>
 				<td th:text="${book.pageCount}"></td>
 				<td th:text="${book.image}"></td>
+				<td><a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn btn-danger">Sil</a>
+					<a class="btn btn-primary">Redaktə</a></td>
 			</tr>
 
 		</tbody>
