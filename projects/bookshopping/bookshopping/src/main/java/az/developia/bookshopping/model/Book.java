@@ -25,9 +25,9 @@ public class Book {
 	@NotNull(message = "Qiymət hissəsini boş qoymaq olmaz!")
 	@Min(value=0, message="Qiymət minimum 0 olmalıdır")
 	private Double price;
-	@NotEmpty(message = "Müəllif hissəsini boş qoymaq olmaz!")
-	@Size(max = 12, message = "Müəllif adı maksimum 20 simvoldan ibarət olmalıdır!")
-	@Size(min = 4, message = "Müəllif adı minimum 4 simvoldan ibarət olmalıdır!")
+	@Column(columnDefinition="VARCHAR(30)")
+	@Size(max = 30, message = "Müəllif adı maksimum 30 simvoldan ibarət olmalıdır!")
+	
 	private String author;
 	@NotNull(message = "Səhifə sayı hissəsini boş qoymaq olmaz!")
 	private Integer pageCount;
