@@ -41,7 +41,7 @@ color:red;
 			<label for="book-description">Təsvir:</label><br>
 			<textarea class="form-control" id="book-description"
 				th:field="*{description}" /></textarea>
-			<span th:if="${#fields.hasErrors('description')}"
+			<span class="error-message" th:if="${#fields.hasErrors('description')}"
 				th:errors="*{description}"></span>
 			
 		</div>
@@ -49,20 +49,20 @@ color:red;
 		<div class="form-group">
 			<label for="book-price">Qiymət:</label><br> <input
 				class="form-control" type="number" id="book-price"
-				th:field="*{price}" /> <span th:if="${#fields.hasErrors('price')}"
+				th:field="*{price}" /> <span class="error-message" th:if="${#fields.hasErrors('price')}"
 				th:errors="*{price}"></span>
 		</div>
 
 		<div class="form-group">
 			<label for="book-author">Müəllif:</label><br> <input
-				class="form-control" id="book-author" th:field="*{author}" /> <span
+				class="form-control" id="book-author" th:field="*{author}" /> <span class="error-message"
 				th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></span>
 		</div>
 
 		<div class="form-group">
 			<label for="book-page-count">Səhifə sayı:</label><br> <input
 				class="form-control" type="number" id="book-page-count"
-				th:field="*{pageCount}" /> <span
+				th:field="*{pageCount}" /> <span class="error-message"
 				th:if="${#fields.hasErrors('pageCount')}" th:errors="*{pageCount}"></span>
 		</div>
 
