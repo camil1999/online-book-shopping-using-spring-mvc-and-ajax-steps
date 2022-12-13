@@ -1,6 +1,7 @@
 package az.developia.bookshopping.model;
 
 import javax.persistence.Column;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,6 +23,7 @@ public class Book {
 	@Column(columnDefinition="VARCHAR(300)")
 	private String description;
 	@NotNull(message = "Qiymət hissəsini boş qoymaq olmaz!")
+	@Min(value=0, message="Qiymət minimum 0 olmalıdır")
 	private Double price;
 	@NotEmpty(message = "Müəllif hissəsini boş qoymaq olmaz!")
 	@Size(max = 12, message = "Müəllif adı maksimum 20 simvoldan ibarət olmalıdır!")
