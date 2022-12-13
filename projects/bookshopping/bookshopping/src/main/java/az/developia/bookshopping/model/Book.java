@@ -1,18 +1,13 @@
 package az.developia.bookshopping.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
 import lombok.Getter;
 
 import lombok.Setter;
 
-@Entity
+@javax.persistence.Entity
 public class Book {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@javax.persistence.Id
+	@javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	@Getter
 	@Setter
 	private Integer id;
