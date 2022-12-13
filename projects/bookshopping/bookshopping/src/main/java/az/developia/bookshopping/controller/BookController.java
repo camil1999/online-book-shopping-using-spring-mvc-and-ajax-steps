@@ -3,9 +3,12 @@ package az.developia.bookshopping.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +41,10 @@ public class BookController {
 	}
 
 	@PostMapping(path = "/save-book-process")
-	public String saveBook(@ModelAttribute(name = "book") Book book, Model model) {
+	public String saveBook(@Valid @ModelAttribute(name = "book") Book book, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return "new-book";
+		}
 		book.setImage("book.jpg");
 		book.setUsername("jamil");
 		bookDAO.save(book);
@@ -61,17 +67,18 @@ public class BookController {
 
 		return "redirect:/books";
 	}
+
 	@GetMapping(path = "/edit/{id}")
 	public String editBook(@PathVariable(name = "id") Integer id, Model model) {
-		Optional<Book>bookOptional=bookDAO.findById(id);
-		boolean bookExists =bookOptional.isPresent();
-		Book book=new Book();
+		Optional<Book> bookOptional = bookDAO.findById(id);
+		boolean bookExists = bookOptional.isPresent();
+		Book book = new Book();
 		if (bookExists) {
-			book=bookOptional.get();
+			book = bookOptional.get();
 		} else {
 
 		}
-		
+
 		model.addAttribute("book", book);
 		model.addAttribute("header", "Kitab redaktəsi");
 
