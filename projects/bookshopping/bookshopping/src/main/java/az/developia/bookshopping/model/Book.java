@@ -2,6 +2,7 @@ package az.developia.bookshopping.model;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 
@@ -17,6 +18,8 @@ public class Book {
 	@Getter
 	@Setter
 	@NotEmpty(message = "Ad hissəsini boş qoymaq olmaz!")
+	@Size(max = 12, message = "Ad maksimum 12 simvoldan ibarət olmalıdır!")
+	@Size(min = 4, message = "Ad minimum 4 simvoldan ibarət olmalıdır!")
 	private String name;
 	@Getter
 	@Setter
