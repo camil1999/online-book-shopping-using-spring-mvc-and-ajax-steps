@@ -1,6 +1,7 @@
 package az.developia.bookshopping.model;
 
 import javax.persistence.Column;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -29,7 +30,8 @@ public class Book {
 	@Size(max = 30, message = "Müəllif adı maksimum 30 simvoldan ibarət olmalıdır!")
 	
 	private String author;
-	@NotNull(message = "Səhifə sayı hissəsini boş qoymaq olmaz!")
+	@Min(value=0, message="Səhifə sayı minimum 0 olmalıdır")
+	@Max(value=1000, message="Səhifə sayı maksimum 1000 olmalıdır")
 	private Integer pageCount;
 	private String image;
 
