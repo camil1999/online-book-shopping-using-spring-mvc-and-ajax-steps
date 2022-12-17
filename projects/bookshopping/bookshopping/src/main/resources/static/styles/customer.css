@@ -96,3 +96,10 @@
 .book-image>img {
 	width: 100%;
 }
+
+#open-basket-btn {
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	
+}
