@@ -12,14 +12,14 @@
 <body>
 
 	<div th:replace="menu :: menu"></div>
-	<h1>Alıcı</h1>
+
 	<div id="main-content">
 		<div class="book-container" th:each="book: ${books}">
 			<div class="book">
 				<span class="book-image"><img th:src="@{/images/java.jpg}" />
-				</span> <span class="book-name"></span> <span
-					class="book-price"></span> <span class="book-description"></span> <span
-					class="book-author"></span> <span class="book-page-count"></span>
+				</span> <span class="book-name"></span> <span class="book-price"></span> <span
+					class="book-description"></span> <span class="book-author"></span>
+				<span class="book-page-count"></span>
 				<div class="add-to-basket">
 					<button class="add-to-basket-btn btn btn-primary">Səbətə
 						at</button>
