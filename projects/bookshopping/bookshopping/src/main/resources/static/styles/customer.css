@@ -101,5 +101,12 @@
 	position: fixed;
 	right: 20px;
 	bottom: 20px;
-	
+	width: 140px;
+}
+
+#search-input {
+	position: fixed;
+	right: 20px;
+	bottom: 70px;
+	width: 140px;
 }
