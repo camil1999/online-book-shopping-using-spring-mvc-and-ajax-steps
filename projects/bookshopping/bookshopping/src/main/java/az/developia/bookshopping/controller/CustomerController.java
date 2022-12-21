@@ -1,6 +1,5 @@
 package az.developia.bookshopping.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import az.developia.bookshopping.config.MySession;
 import az.developia.bookshopping.dao.BookDAO;
 import az.developia.bookshopping.model.Book;
 
@@ -15,6 +15,10 @@ import az.developia.bookshopping.model.Book;
 public class CustomerController {
 	@Autowired
 	private BookDAO bookDAO;
+	
+	
+	@Autowired
+	private MySession mySession;
 
 	@GetMapping(path = "/customer")
 	public String showoCustomerPage(Model model) {
