@@ -13,10 +13,14 @@ import az.developia.bookshopping.model.User;
 
 @Controller
 public class UserController {
+	private boolean createUser = false;
 
 	@GetMapping(path = "/show-login")
-	public String showLoginPage() {
-
+	public String showLoginPage(Model model) {
+		if (createUser) {
+			model.addAttribute("userCreated", "");
+			createUser=false;
+		}
 		return "my-custom-login";
 	}
 
@@ -31,8 +35,9 @@ public class UserController {
 	public String saveBook(@Valid @ModelAttribute(name = "user") User user, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "create-account";
+			
 		}
-
-		return "redirect:/show-user";
+		createUser = true;
+		return "redirect:/show-login";
 	}
 }
