@@ -21,7 +21,12 @@
 	<div style="width: 300px; margin: auto;">
 		<form th:action="@{/create-account-process}" method="POST"
 			class="form" th:object="${user}">
+			<div th:if="${userExists}"
+				class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				İstifadəçi artıq mövcuddur!
 
+			</div>
 
 			<div class="form-group">
 				<label for="username"> İstifadəçi adı</label> <input
