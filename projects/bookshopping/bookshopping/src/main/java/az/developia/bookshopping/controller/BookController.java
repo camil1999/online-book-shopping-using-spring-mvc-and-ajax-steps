@@ -32,6 +32,7 @@ public class BookController {
 	public String showBooks(Model model) {
 		List<Book> books = bookDAO.findByUsername(mySession.getUsername());
 		model.addAttribute("books", books);
+		model.addAttribute("username", "İstifadəçi: "+mySession.getUsername());
 		return "books";
 	}
 
