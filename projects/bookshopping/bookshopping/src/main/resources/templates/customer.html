@@ -11,50 +11,51 @@
 </head>
 <body>
 	<div th:replace="menu :: menu"></div>
-	<div id="main-content">
-		
-	</div>
-<script>
-var xht = new XMLHttpRequest ();
-xht.onreadystatechange = function () {
-if (this.readyState == 4 && this.status == 200) {
-var responseJSON=this.responseText;
-var booksArray=JSON.parse(responseJSON);
-console.log(booksArray);
-var mainContent=document.getElementById('main-content');
-var mainContentHTML="";
-for(var i=0;i<booksArray.length;i++){
-var book=booksArray[i];
-mainContentHTML+="<div class='book-container'>";
-mainContentHTML+="<div class='book'>";
-mainContentHTML+="<span class='book-image'></span>";
-mainContentHTML+="<span class='book-name' title='"+
-book.name+"'>"+book.name+"</span>";
-mainContentHTML+="<span class='book-price' title='"+
-book.price+"'>"+book.price+"</span>";
-mainContentHTML+="<span class='book-description' title='"+
-book.description+"'>"+book.description+"</span>";
-mainContentHTML+="<span class='book-author' title='"+
-book.author+"'>"+book.author+"</span>";
-mainContentHTML+="<span class='book-page-count' title='"+
-book.pageCount+"'>"+book.pageCount+"</span> ";
-mainContentHTML+="<div class='add-to-basket'><button "+
+	<div id="main-content"></div>
+	<button id='open-basket-btn' class='btn btn-primary'>
+		Səbət <span class='badge badge-light'>0</span>
+	</button>
+	<input id='search-input' class='form-control' placeholder='Axtarış' />
+	<script>
+		var xht = new XMLHttpRequest();
+		xht.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var responseJSON = this.responseText;
+				var booksArray = JSON.parse(responseJSON);
+				console.log(booksArray);
+				var mainContent = document.getElementById('main-content');
+				var mainContentHTML = "";
+				for (var i = 0; i < booksArray.length; i++) {
+					var book = booksArray[i];
+					mainContentHTML += "<div class='book-container'>";
+					mainContentHTML += "<div class='book'>";
+					mainContentHTML += "<span class='book-image'></span>";
+					mainContentHTML += "<span class='book-name' title='"+
+book.name+"'>"
+							+ book.name + "</span>";
+					mainContentHTML += "<span class='book-price' title='"+
+book.price+"'>"
+							+ book.price + "</span>";
+					mainContentHTML += "<span class='book-description' title='"+
+book.description+"'>"
+							+ book.description + "</span>";
+					mainContentHTML += "<span class='book-author' title='"+
+book.author+"'>"
+							+ book.author + "</span>";
+					mainContentHTML += "<span class='book-page-count' title='"+
+book.pageCount+"'>"
+							+ book.pageCount + "</span> ";
+					mainContentHTML += "<div class='add-to-basket'><button "+
 "class='add-to-basket-btn btn btn-primary'>Səbətə at</button></div>";
-mainContentHTML+="</div></div>";
-}
-mainContentHTML+="<button id='open-basket-btn' "+
-"class='btn btn-primary'>Səbət <span class='badge badge-light'"+
-">10</span></button>";
-mainContentHTML+="<input id='search-input' class='form-control'"+
-" placeholder='Axtarış'/>";
-mainContent.innerHTML=mainContentHTML;
+					mainContentHTML += "</div></div>";
+				}
 
+				mainContent.innerHTML = mainContentHTML;
 
- }
- };
-xht.open ("GET", "/rest/books", true);
-xht.send ();
-
-</script>
+			}
+		};
+		xht.open("GET", "/rest/books", true);
+		xht.send();
+	</script>
 </body>
 </html>
