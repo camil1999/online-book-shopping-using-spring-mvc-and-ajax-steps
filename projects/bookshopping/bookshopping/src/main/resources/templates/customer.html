@@ -46,7 +46,7 @@ book.author+"'>"
 book.pageCount+"'>"
 							+ book.pageCount + "</span> ";
 					mainContentHTML += "<div class='add-to-basket'><button "+
-"class='add-to-basket-btn btn btn-primary'>Səbətə at</button></div>";
+"class='add-to-basket-btn btn btn-primary' onclick='addToBasket("+book.id+")'>Səbətə at</button></div>";
 					mainContentHTML += "</div></div>";
 				}
 
@@ -56,6 +56,8 @@ book.pageCount+"'>"
 		};
 		xht.open("GET", "/rest/books", true);
 		xht.send();
+		
+		function addToBasket(bookId){alert(bookId);}
 	</script>
 </body>
 </html>
