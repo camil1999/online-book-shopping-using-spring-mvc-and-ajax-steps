@@ -25,11 +25,14 @@
 		// JAVASCRIPT BEGIN 
 		// REFRESH BEGIN 
 		var xht = new XMLHttpRequest();
+		var booksArrayGlobal;
+		var basketBooks = [];
 		xht.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				var responseJSON = this.responseText;
 				var booksArray = JSON.parse(responseJSON);
 				console.log(booksArray);
+				booksArrayGlobal = booksArray;
 				var mainContent = document.getElementById('main-content');
 				var mainContentHTML = "";
 				for (var i = 0; i < booksArray.length; i++) {
@@ -64,10 +67,36 @@ book.pageCount+"'>"
 		};
 		xht.open("GET", "/rest/books", true);
 		xht.send();
-		// REFRESH BEGIN 
+		// REFRESH END 
+		// FUNCTION BEGIN 
 		function addToBasket(bookId) {
-			alert(bookId);
+			var bookExistsInBasket = false;
+			for (var i = 0; i < basketBooks.length; i++) {
+				var basketBook = basketBooks[i];
+				if (basketBook.book.id == bookId) {
+					basketBook.count++;
+					bookExistsInBasket = true;
+					break;
+				}
+			}
+			if (bookExistsInBasket) {
+
+			} else {
+				for (var i = 0; i < booksArrayGlobal.length; i++) {
+					if (booksArrayGlobal[i].id == bookId) {
+						var basketBook = {
+							count : 1,
+							book : booksArrayGlobal[i]
+						};
+						basketBooks.push(basketBook);
+						break;
+					}
+				}
+			}
+
+			alert(JSON.stringify(basketBooks));
 		}
+		// FUNCTION END 
 		// JAVASCRIPT END
 	</script>
 </body>
