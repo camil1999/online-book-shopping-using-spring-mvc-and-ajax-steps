@@ -15,7 +15,7 @@
 	<div th:replace="menu :: menu"></div>
 	<div id="main-content"></div>
 	<button id='open-basket-btn' class='btn btn-primary'>
-		Səbət <span class='badge badge-light'>0</span>
+		Səbət <span class='badge badge-light' id="basket-book-count">0</span>
 	</button>
 	<input id='search-input' class='form-control' placeholder='Axtarış' />
 
@@ -25,14 +25,23 @@
 		// JAVASCRIPT BEGIN 
 		// REFRESH BEGIN 
 		var xht = new XMLHttpRequest();
-		var booksArrayGlobal;
+		var booksArrayGlobal=[];
 		var basketBooks = [];
+		var basketBooksFromStorage=localStorage.getItem('basketBooks');
+		if(basketBooksFromStorage==null){
+			localStorage.setItem('basketBooks','[]');
+		}else{
+			basketBooks=JSON.parse(basketBooksFromStorage);
+		}
+		var openBasketButton=document.getElementById('open-basket-btn');
+		var basketBookCount=document.getElementById('basket-book-count');
+		basketBookCount.innerHTML=basketBooks.length;
 		xht.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				var responseJSON = this.responseText;
 				var booksArray = JSON.parse(responseJSON);
 				console.log(booksArray);
-				booksArrayGlobal = booksArray;
+				booksArrayGlobal = booksArray.slice();
 				var mainContent = document.getElementById('main-content');
 				var mainContentHTML = "";
 				for (var i = 0; i < booksArray.length; i++) {
@@ -93,8 +102,10 @@ book.pageCount+"'>"
 					}
 				}
 			}
-
-			alert(JSON.stringify(basketBooks));
+			openBasketButton.style.display='none';
+			basketBookCount.innerHTML=basketBooks.length;
+			localStorage.setItem('basketBooks',JSON.stringify(basketBooks));
+			setTimeout(function(){openBasketButton.style.display='block';},10);		
 		}
 		// FUNCTION END 
 		// JAVASCRIPT END
