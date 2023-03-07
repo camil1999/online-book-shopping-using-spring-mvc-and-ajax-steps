@@ -10,13 +10,20 @@
 </style>
 </head>
 <body>
+	<!-- HTML BEGIN -->
+
 	<div th:replace="menu :: menu"></div>
 	<div id="main-content"></div>
 	<button id='open-basket-btn' class='btn btn-primary'>
 		Səbət <span class='badge badge-light'>0</span>
 	</button>
 	<input id='search-input' class='form-control' placeholder='Axtarış' />
+
+	<!-- HTML END -->
+
 	<script>
+		// JAVASCRIPT BEGIN 
+		// REFRESH BEGIN 
 		var xht = new XMLHttpRequest();
 		xht.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
@@ -45,8 +52,9 @@ book.author+"'>"
 					mainContentHTML += "<span class='book-page-count' title='"+
 book.pageCount+"'>"
 							+ book.pageCount + "</span> ";
-					mainContentHTML += "<div class='add-to-basket'><button "+
-"class='add-to-basket-btn btn btn-primary' onclick='addToBasket("+book.id+")'>Səbətə at</button></div>";
+					mainContentHTML += "<div class='add-to-basket'><button "
+							+ "class='add-to-basket-btn btn btn-primary' onclick='addToBasket("
+							+ book.id + ")'>Səbətə at</button></div>";
 					mainContentHTML += "</div></div>";
 				}
 
@@ -56,8 +64,11 @@ book.pageCount+"'>"
 		};
 		xht.open("GET", "/rest/books", true);
 		xht.send();
-		
-		function addToBasket(bookId){alert(bookId);}
+		// REFRESH BEGIN 
+		function addToBasket(bookId) {
+			alert(bookId);
+		}
+		// JAVASCRIPT END
 	</script>
 </body>
 </html>
