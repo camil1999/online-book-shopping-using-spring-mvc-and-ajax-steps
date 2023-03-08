@@ -5,6 +5,13 @@
 <title>Alıcı</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <link th:href="@{/styles/customer.css}" rel="stylesheet" />
 <style>
 </style>
@@ -14,28 +21,42 @@
 
 	<div th:replace="menu :: menu"></div>
 	<div id="main-content"></div>
-	<button id='open-basket-btn' class='btn btn-primary'>
+	<button type="button" data-toggle="modal" data-target="#basketModal"
+	id='open-basket-btn' class='btn btn-primary'>
 		Səbət <span class='badge badge-light' id="basket-book-count">0</span>
 	</button>
 	<input id='search-input' class='form-control' placeholder='Axtarış' />
-
+<div class="modal fade" id="basketModal">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h1 class="modal-title">Səbət</h1>
+<button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+<div class="modal-body">
+Səbət cədvəli burada olacaq
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-danger" data-dismiss="modal">Bağla</button>
+</div>
+</div></div></div>	
 	<!-- HTML END -->
 
 	<script>
 		// JAVASCRIPT BEGIN 
 		// REFRESH BEGIN 
 		var xht = new XMLHttpRequest();
-		var booksArrayGlobal=[];
+		var booksArrayGlobal = [];
 		var basketBooks = [];
-		var basketBooksFromStorage=localStorage.getItem('basketBooks');
-		if(basketBooksFromStorage==null){
-			localStorage.setItem('basketBooks','[]');
-		}else{
-			basketBooks=JSON.parse(basketBooksFromStorage);
+		var basketBooksFromStorage = localStorage.getItem('basketBooks');
+		if (basketBooksFromStorage == null) {
+			localStorage.setItem('basketBooks', '[]');
+		} else {
+			basketBooks = JSON.parse(basketBooksFromStorage);
 		}
-		var openBasketButton=document.getElementById('open-basket-btn');
-		var basketBookCount=document.getElementById('basket-book-count');
-		basketBookCount.innerHTML=basketBooks.length;
+		var openBasketButton = document.getElementById('open-basket-btn');
+		var basketBookCount = document.getElementById('basket-book-count');
+		basketBookCount.innerHTML = basketBooks.length;
 		xht.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				var responseJSON = this.responseText;
@@ -102,10 +123,12 @@ book.pageCount+"'>"
 					}
 				}
 			}
-			openBasketButton.style.display='none';
-			basketBookCount.innerHTML=basketBooks.length;
-			localStorage.setItem('basketBooks',JSON.stringify(basketBooks));
-			setTimeout(function(){openBasketButton.style.display='block';},10);		
+			openBasketButton.style.display = 'none';
+			basketBookCount.innerHTML = basketBooks.length;
+			localStorage.setItem('basketBooks', JSON.stringify(basketBooks));
+			setTimeout(function() {
+				openBasketButton.style.display = 'block';
+			}, 10);
 		}
 		// FUNCTION END 
 		// JAVASCRIPT END
