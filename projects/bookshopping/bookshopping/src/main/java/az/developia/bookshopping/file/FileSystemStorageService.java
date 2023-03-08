@@ -1,5 +1,7 @@
 package az.developia.bookshopping.file;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -20,6 +22,13 @@ public class FileSystemStorageService implements StorageService {
 
 	@Override
 	public void init() {
+		try {
+			 Files.createDirectories(rootLocation);
+			 }
+			 catch (IOException e) {
+			 throw new StorageException("Qovluq yaradila bilmedi", e);
+			 }
+			 
 
 	}
 
