@@ -14,6 +14,7 @@
 #username{
 display: inline-block;font-size: 24px;font-weight: bold;margin: 0;
 }
+.book-image{width: 40px;}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -68,7 +69,11 @@ display: inline-block;font-size: 24px;font-weight: bold;margin: 0;
 					<td th:text="${book.price}"></td>
 					<td th:text="${book.author}"></td>
 					<td th:text="${book.pageCount}"></td>
-					<td th:text="${book.image}"></td>
+					
+					<td><img class="book-image"
+					 th:src="@{'/files/'+${book.image}}" /></td>
+					
+					
 					<td><a th:href="@{/books/delete/{id}(id=${book.id})}"
 						class="btn btn-danger"
 						th:onclick="if(!(confirm('Kitabı silməyə əminsiniz?')))return false">Sil</a>
