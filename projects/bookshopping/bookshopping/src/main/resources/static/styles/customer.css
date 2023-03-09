@@ -57,8 +57,9 @@
 .book-image {
 	display: block;
 	width: 100%;
-	background-color: olive;
+	background-color: transparent;
 	height: 120px;
+	background-repeat: no-repeat;background-position: center;background-size: contain;
 }
 
 .book-name, .book-price, .book-description, .book-author,

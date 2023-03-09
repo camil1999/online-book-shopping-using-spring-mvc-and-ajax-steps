@@ -13,14 +13,17 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link th:href="@{/styles/customer.css}" rel="stylesheet" />
 <style>
+.basket-book-image{
+width:30px;
+}
 </style>
 </head>
 <body>
 	<!-- HTML BEGIN -->
 	<div th:replace="menu :: menu"></div>
 	<div id="main-content"></div>
-	<button type="button" data-toggle="modal" data-target="#basketModal" onclick="openBasket()"
-		id='open-basket-btn' class='btn btn-primary'>
+	<button type="button" data-toggle="modal" data-target="#basketModal"
+		onclick="openBasket()" id='open-basket-btn' class='btn btn-primary'>
 		Səbət <span class='badge badge-light' id="basket-book-count">0</span>
 	</button>
 	<input id='search-input' class='form-control' placeholder='Axtarış' />
@@ -36,9 +39,10 @@
 						<thead>
 							<tr>
 								<th>ID</th>
+								<th>Şəkil</th>
 								<th>Ad</th>
 								<th>Qiymət</th>
-								<th>Miqdar</th>  
+								<th>Miqdar</th>
 								<th>Ümumi qiymət</th>
 								<th></th>
 							</tr>
@@ -69,7 +73,7 @@
 		var openBasketButton = document.getElementById('open-basket-btn');
 		var basketBookCount = document.getElementById('basket-book-count');
 		var basketBooksTable = document.getElementById('basket-books-table');
-		
+
 		basketBookCount.innerHTML = basketBooks.length;
 		xht.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
@@ -83,7 +87,8 @@
 					var book = booksArray[i];
 					mainContentHTML += "<div class='book-container'>";
 					mainContentHTML += "<div class='book'>";
-					mainContentHTML += "<span class='book-image'></span>";
+					mainContentHTML += "<span class='book-image' style='background-image:url(/files/"
+							+ book.image + ");'></span>";
 					mainContentHTML += "<span class='book-name' title='"+
 book.name+"'>"
 							+ book.name + "</span>";
@@ -142,22 +147,23 @@ book.pageCount+"'>"
 				openBasketButton.style.display = 'block';
 			}, 10);
 		}
-		
-		function openBasket(){
-			var basketBooksTableHTML="";
+
+		function openBasket() {
+			var basketBooksTableHTML = "";
 			for (var i = 0; i < basketBooks.length; i++) {
-				var basketBook=basketBooks[i];
-				basketBooksTableHTML+="<tr><td>"+basketBook.book.id;
-				basketBooksTableHTML+="</td><td>"+basketBook.book.name;
-				basketBooksTableHTML+="</td><td>"+basketBook.book.price;
-				basketBooksTableHTML+="</td><td>"+basketBook.count;
-				basketBooksTableHTML+="</td><td>"+(basketBook.book.price*basketBook.count);
-				basketBooksTableHTML+="</td><td><button class='btn btn-danger'>X</button>";
-				basketBooksTableHTML+="</td></tr>";
-				
-				
+				var basketBook = basketBooks[i];
+				basketBooksTableHTML += "<tr><td>" + basketBook.book.id;
+				basketBooksTableHTML += "</td><td>" + "<img class='basket-book-image' src='/files/"+basketBook.book.image+"' />";
+				basketBooksTableHTML += "</td><td>" + basketBook.book.name;
+				basketBooksTableHTML += "</td><td>" + basketBook.book.price;
+				basketBooksTableHTML += "</td><td>" + basketBook.count;
+				basketBooksTableHTML += "</td><td>"
+						+ (basketBook.book.price * basketBook.count);
+				basketBooksTableHTML += "</td><td><button class='btn btn-danger'>X</button>";
+				basketBooksTableHTML += "</td></tr>";
+
 			}
-			basketBooksTable.innerHTML=basketBooksTableHTML;
+			basketBooksTable.innerHTML = basketBooksTableHTML;
 		}
 		// FUNCTION END 
 		// JAVASCRIPT END
