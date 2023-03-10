@@ -10,8 +10,38 @@
 </head>
 <body>
 
-	<div th:replace="menu :: menu"></div><br>
+	<div th:replace="menu :: menu"></div>
+	<br>
 	<h1 id="name" style="color: blue">Sifarişlər</h1>
+
+
+
+	<table id="orders-table"
+		class="table table-hover table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Tarix</th>
+				<th>Qeyd</th>
+
+			</tr>
+
+		</thead>
+		<tbody>
+			<tr th:each="order : ${orders}">
+				<td th:text="${order.id}"></td>
+				<td th:text="${order.register}"></td>
+				<td th:text="${order.note}"></td>
+
+
+
+
+
+			</tr>
+
+		</tbody>
+
+	</table>
 
 </body>
 </html>
