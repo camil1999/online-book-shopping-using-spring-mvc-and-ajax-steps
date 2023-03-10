@@ -55,6 +55,8 @@
 				if (this.readyState == 4 && this.status == 200) {
 					var response = this.responseText;
 					console.log(JSON.parse(response));
+					localStorage.setItem('basketBooks','[]');
+					window.location.href='/customer';
 				}
 			};
 			xhttp.open("POST", "/rest/orders", true);

@@ -6,6 +6,17 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
+#name {
+	background-color: lime;
+	padding: 5px;
+	display: inline-block;
+}
+
+body {
+	background-image: url("images/foto.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 </style>
 </head>
 <body>
@@ -13,8 +24,8 @@
 	<div th:replace="menu :: menu"></div>
 	<br>
 	<div class="container-fluid">
-		<h1 id="name" style="color: blue">Kitab alış-verişi saytımıza xoş
-			gəlmisiniz</h1>
+		<h1 id="name" style="color: blue;">Kitab alış-verişi saytımıza
+			xoş gəlmisiniz</h1><br>
 		<a class="btn btn-primary" th:href="@{/books}">Kitabların siyahısı</a>
 		<a class="btn btn-warning" th:href="@{/customer}">Kitablar
 			alış-verişinə başla</a> <a class="btn btn-success" th:href="@{/orders}">Sifarişlərim</a>
