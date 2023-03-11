@@ -31,6 +31,11 @@
 			<label for="customer-phone">Telefon: </label> <input
 				class="form-control" id="customer-phone" />
 		</div>
+			<div class="form-group">
+			<label for="customer-email">Email: </label> <input
+				class="form-control" id="customer-email" />
+		</div>
+		
 		<button class="btn btn-success" onclick="confirmOrder()">Yadda
 			saxla</button>
 
@@ -40,7 +45,9 @@
 		var customerName = document.getElementById('customer-name');
 		var customerAddress = document.getElementById('customer-address');
 		var customerPhone = document.getElementById('customer-phone');
+		var customerEmail= document.getElementById('customer-email');
 		var orderNote = document.getElementById('order-note');
+		
 
 		var order = {};
 		var basketBooksFromStorage = localStorage.getItem('basketBooks');
@@ -55,6 +62,7 @@
 			order.customer.name = customerName.value;
 			order.customer.address = customerAddress.value;
 			order.customer.phone = customerPhone.value;
+			order.customer.email = customerEmail.value;
 			order.note=orderNote.value;
 			console.log(order);
 			var xhttp = new XMLHttpRequest();
