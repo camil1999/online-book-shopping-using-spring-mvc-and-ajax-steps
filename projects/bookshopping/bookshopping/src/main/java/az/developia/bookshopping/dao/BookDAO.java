@@ -9,7 +9,7 @@ import az.developia.bookshopping.model.Book;
 
 public interface BookDAO extends JpaRepository<Book, Integer> {
 	List<Book> findByUsername(String username);
-@Query(value="select * from book where name like %?1%",nativeQuery =true)
+@Query(value="select * from book where name like %?1% or description like %?1% or price like %?1% or author like %?1% or page_count like %?1%",nativeQuery =true)
 	List<Book> findAllSearch(String search);
 
 }
