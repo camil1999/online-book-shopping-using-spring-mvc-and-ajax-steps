@@ -17,9 +17,9 @@
 	width: 30px;
 }
 
-#total-price{
-font-size: 24px;
-font-weight: bold;
+#total-price {
+	font-size: 24px;
+	font-weight: bold;
 }
 </style>
 </head>
@@ -31,7 +31,8 @@ font-weight: bold;
 		onclick="openBasket()" id='open-basket-btn' class='btn btn-primary'>
 		Səbət <span class='badge badge-light' id="basket-book-count">0</span>
 	</button>
-	<input id='search-input' class='form-control' placeholder='Axtarış' onchange='searchBook(this.value)'/>
+	<input id='search-input' class='form-control' placeholder='Axtarış'
+		onchange='searchBook(this.value)' />
 	<div class="modal fade" id="basketModal">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -57,7 +58,8 @@ font-weight: bold;
 					<span id="total-price"></span>
 				</div>
 				<div class="modal-footer">
-					<a th:href="@{/confirm-order}" class="btn btn-primary" >Sifarişi təsdiqlə</a>
+					<a th:href="@{/confirm-order}" class="btn btn-primary">Sifarişi
+						təsdiqlə</a>
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Bağla</button>
 				</div>
 			</div>
@@ -71,6 +73,10 @@ font-weight: bold;
 		var xht = new XMLHttpRequest();
 		var booksArrayGlobal = [];
 		var basketBooks = [];
+		var searchTextGlobal='';
+			var begin=0;
+			var length=20;
+			var mainContentHTML = "";
 		var basketBooksFromStorage = localStorage.getItem('basketBooks');
 		if (basketBooksFromStorage == null) {
 			localStorage.setItem('basketBooks', '[]');
@@ -89,7 +95,7 @@ font-weight: bold;
 				console.log(booksArray);
 				booksArrayGlobal = booksArray.slice();
 				var mainContent = document.getElementById('main-content');
-				var mainContentHTML = "";
+				
 				for (var i = 0; i < booksArray.length; i++) {
 					var book = booksArray[i];
 					mainContentHTML += "<div class='book-container'>";
@@ -119,8 +125,10 @@ book.pageCount+"'>"
 				mainContent.innerHTML = mainContentHTML;
 			}
 		};
-		xht.open("GET", "/rest/books", true);
-		xht.send();
+		xht.open("POST", "/rest/books/search-find-partial", true);
+		xht.setRequestHeader("Content-type", "application/json");
+		var searchObject={search:'',begin:begin,length:length};
+		xht.send(JSON.stringify(searchObject));
 		// REFRESH END 
 		// FUNCTION BEGIN 
 		function addToBasket(bookId) {
@@ -226,13 +234,43 @@ book.pageCount+"'>"
 			totalPrice.innerHTML = 'Ümumi qiymət: ' + totalPriceNumber + ' AZN';
 		}
 
-		function searchBook(searchText){
-			xht.open("POST", "/rest/books/search", true);
-			xht.setRequestHeader ("Content-type", "application/json");
- var searchObject={search:searchText};
- 
+		function searchBook(searchText) {
+			searchTextGlobal=searchText;
+			mainContentHTML="";
+			xht.open("POST", "/rest/books/search-find-partial", true);
+			xht.setRequestHeader("Content-type", "application/json");
+			begin=0;
+			var searchObject = {
+				search : searchText,begin:begin,length:length
+			};
+
 			xht.send(JSON.stringify(searchObject));
 		}
+		var counter = 0;
+		var allowScroll=true;
+		function onScroll() {
+			if(allowScroll){
+				
+			const distanceToBottom = document.body.getBoundingClientRect().bottom;
+			const documentHeight = document.documentElement.clientHeight;
+			if (distanceToBottom < documentHeight + 150) {
+				allowScroll=false;
+				counter++;
+				console.log('onScroll : ' + counter);
+				
+				begin+=20;
+				xht.open("POST", "/rest/books/search-find-partial", true);
+				xht.setRequestHeader("Content-type", "application/json");
+				var searchObject={search:searchTextGlobal,begin:begin,length:length};
+				xht.send(JSON.stringify(searchObject));
+				
+				setTimeout(function(){allowScroll=true;},1000);
+			}
+			}
+			
+		}
+		window.addEventListener("scroll", onScroll);
+
 		// FUNCTION END 
 		// JAVASCRIPT END
 	</script>

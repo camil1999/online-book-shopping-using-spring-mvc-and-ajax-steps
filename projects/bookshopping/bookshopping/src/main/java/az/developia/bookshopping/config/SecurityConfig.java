@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/rest/orders").permitAll()
 				.antMatchers(HttpMethod.GET, "/rest/books").permitAll()
 				.antMatchers(HttpMethod.POST, "/rest/books/search").permitAll()
+				.antMatchers(HttpMethod.POST, "/rest/books/search-find-partial").permitAll()
 				
 				.anyRequest().authenticated().and().formLogin()
 				.loginPage("/show-login").loginProcessingUrl("/authenticate-user").permitAll().and().logout()
