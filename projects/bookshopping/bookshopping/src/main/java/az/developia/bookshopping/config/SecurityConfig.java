@@ -16,11 +16,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/").permitAll()
-			.antMatchers(HttpMethod.GET,"/images/foto.jpg").permitAll()
-				.antMatchers(HttpMethod.GET, "/create-account").permitAll()
-				.antMatchers(HttpMethod.POST, "/create-account-process").permitAll().anyRequest().authenticated().and()
-				.formLogin().loginPage("/show-login").loginProcessingUrl("/authenticate-user").permitAll().and()
-				.logout().permitAll().and();
+				.antMatchers(HttpMethod.GET, "/images/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/create-account").permitAll().antMatchers(HttpMethod.GET, "/customer")
+				.permitAll().antMatchers(HttpMethod.POST, "/create-account-process").permitAll()
+				.antMatchers(HttpMethod.GET, "/styles/customer.css").permitAll()
+				.antMatchers(HttpMethod.GET, "/images/").permitAll()
+				.antMatchers(HttpMethod.GET, "/files/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/confirm-order").permitAll()
+				.antMatchers(HttpMethod.POST, "/rest/orders").permitAll()
+				.antMatchers(HttpMethod.GET, "/rest/books").permitAll().anyRequest().authenticated().and().formLogin()
+				.loginPage("/show-login").loginProcessingUrl("/authenticate-user").permitAll().and().logout()
+				.permitAll().and();
 	}
 
 	@Autowired
