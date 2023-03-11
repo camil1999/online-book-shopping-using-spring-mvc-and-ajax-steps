@@ -31,7 +31,7 @@ font-weight: bold;
 		onclick="openBasket()" id='open-basket-btn' class='btn btn-primary'>
 		Səbət <span class='badge badge-light' id="basket-book-count">0</span>
 	</button>
-	<input id='search-input' class='form-control' placeholder='Axtarış' />
+	<input id='search-input' class='form-control' placeholder='Axtarış' onchange='searchBook(this.value)'/>
 	<div class="modal fade" id="basketModal">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -226,6 +226,13 @@ book.pageCount+"'>"
 			totalPrice.innerHTML = 'Ümumi qiymət: ' + totalPriceNumber + ' AZN';
 		}
 
+		function searchBook(searchText){
+			xht.open("POST", "/rest/books/search", true);
+			xht.setRequestHeader ("Content-type", "application/json");
+ var searchObject={search:searchText};
+ 
+			xht.send(JSON.stringify(searchObject));
+		}
 		// FUNCTION END 
 		// JAVASCRIPT END
 	</script>
