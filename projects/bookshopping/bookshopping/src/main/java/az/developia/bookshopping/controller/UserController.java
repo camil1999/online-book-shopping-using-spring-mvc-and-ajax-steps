@@ -1,5 +1,6 @@
 package az.developia.bookshopping.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,12 @@ public class UserController {
 	private UserDAO userDAO;
 
 	@GetMapping(path = "/show-login")
-	public String showLoginPage(Model model) {
+	public String showLoginPage(Model model,HttpServletRequest request) {
 		if (createUser) {
 			model.addAttribute("userCreated", "");
 			createUser=false;
 		}
+		request.getSession().invalidate();
 		return "my-custom-login";
 	}
 

@@ -19,6 +19,7 @@ public class MySession {
 		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
 		String username = loggedInUser.getName();
 		this.username = username;
+		
 
 	}
 }
