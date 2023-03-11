@@ -1,6 +1,7 @@
 package az.developia.bookshopping.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -32,8 +33,14 @@ public class Order {
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="order_id")
+	@JoinColumn(name = "order_id")
 	private List<BasketBook> basketBooks;
 	private String username;
 
+	public List<BasketBook> getBasketBooks() {
+		if (basketBooks == null) {
+			basketBooks = new ArrayList<BasketBook>();
+		}
+		return basketBooks;
+	}
 }
