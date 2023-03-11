@@ -23,11 +23,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/images/").permitAll()
 				.antMatchers(HttpMethod.GET, "/files/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/confirm-order").permitAll()
+				.antMatchers(HttpMethod.POST, "/confirm-order-process").permitAll()
 				.antMatchers(HttpMethod.POST, "/rest/orders").permitAll()
 				.antMatchers(HttpMethod.GET, "/rest/books").permitAll()
 				.antMatchers(HttpMethod.POST, "/rest/books/search").permitAll()
 				.antMatchers(HttpMethod.POST, "/rest/books/search-find-partial").permitAll()
 				.antMatchers(HttpMethod.GET, "/order-confirmation-message").permitAll()
+				.antMatchers(HttpMethod.POST, "/rest/orders/save-basket-books").permitAll()
+				
+				
 				
 				.anyRequest().authenticated().and().formLogin()
 				.loginPage("/show-login").loginProcessingUrl("/authenticate-user").permitAll().and().logout()

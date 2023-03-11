@@ -6,39 +6,65 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
+
+#confirm-order-form {
+	width: 300px;
+	margin: auto;
+}
+
+.error-message {
+	color: red;
+}
+
 </style>
 </head>
 <body>
 
 	<div th:replace="menu :: menu"></div>
 	<div class="container">
+<form th:action="@{/confirm-order-process}" method="POST" th:object="${customer}" id="confirm-order-form">
 
 		<div class="form-group">
 			<label for="customer-name">Ad: </label> <input class="form-control"
-				id="customer-name" />
+				id="customer-name" th:field="*{name}" />
+				 <span
+				class="error-message" th:if="${#fields.hasErrors('name')}"
+				th:errors="*{name}"></span>
 		</div>
 		
 		<div class="form-group">
 			<label for="order-note">Qeyd: </label> <input class="form-control"
-				id="order-note" />
+				id="order-note" th:field="*{note}" />
+				 <span
+				class="error-message" th:if="${#fields.hasErrors('note')}"
+				th:errors="*{note}"></span>
 		</div>
 
 		<div class="form-group">
 			<label for="customer-address">Ünvan: </label> <input
-				class="form-control" id="customer-address" />
+				class="form-control" id="customer-address" th:field="*{address}" />
+				 <span
+				class="error-message" th:if="${#fields.hasErrors('address')}"
+				th:errors="*{address}"></span>
 		</div>
 		<div class="form-group">
 			<label for="customer-phone">Telefon: </label> <input
-				class="form-control" id="customer-phone" />
+				class="form-control" id="customer-phone" th:field="*{phone}" />
+				 <span
+				class="error-message" th:if="${#fields.hasErrors('phone')}"
+				th:errors="*{phone}"></span>
 		</div>
 			<div class="form-group">
 			<label for="customer-email">Email: </label> <input
-				class="form-control" id="customer-email" />
+				class="form-control" id="customer-email" th:field="*{email}"  />
+				 <span
+				class="error-message" th:if="${#fields.hasErrors('email')}"
+				th:errors="*{email}"></span>
 		</div>
 		
-		<button class="btn btn-success" onclick="confirmOrder()">Yadda
+		<button class="btn btn-success" type="submit">Yadda
 			saxla</button>
-
+</form>
 	</div>
 
 	<script>

@@ -13,13 +13,14 @@
 <body>
 
 	<div th:replace="menu :: menu"></div>
-	<br>
-	<div class="container-fluid">
+	<div class="container ">
 		<h1 id="name" style="color: blue;">Sifarişiniz qəbul olundu</h1>
 
 		<a class="btn btn-success" th:href="@{/customer}">Alış-verişə davam et</a>
 	</div>
 
-
+<script type="text/javascript">
+localStorage.setItem('basketBooks','[]');
+</script>
 </body>
 </html>

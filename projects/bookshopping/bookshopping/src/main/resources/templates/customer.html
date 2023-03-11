@@ -58,8 +58,8 @@
 					<span id="total-price"></span>
 				</div>
 				<div class="modal-footer">
-					<a th:href="@{/confirm-order}" class="btn btn-primary">Sifarişi
-						təsdiqlə</a>
+					<button class="btn btn-primary" onclick="confirmOrder()">Sifarişi
+						təsdiqlə</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Bağla</button>
 				</div>
 			</div>
@@ -270,6 +270,19 @@ book.pageCount+"'>"
 			
 		}
 		window.addEventListener("scroll", onScroll);
+		
+		function confirmOrder(){
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+						if (this.readyState == 4 && this.status == 200) {
+						window.location.href="/confirm-order";	
+						}
+			};	
+			xhttp.open("POST", "/rest/orders/save-basket-books", true);
+			xhttp.setRequestHeader("Content-type", "application/json");
+	
+			xhttp.send(JSON.stringify(basketBooks));
+		}
 
 		// FUNCTION END 
 		// JAVASCRIPT END
