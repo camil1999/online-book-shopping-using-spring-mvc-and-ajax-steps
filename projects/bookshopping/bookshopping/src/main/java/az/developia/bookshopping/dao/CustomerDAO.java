@@ -7,4 +7,6 @@ import az.developia.bookshopping.model.Customer;
 public interface CustomerDAO extends JpaRepository<Customer, Integer> {
 	public Customer findByPhone(String phone);
 
+	public Customer findByEmail(String email);
+
 }
