@@ -58,7 +58,7 @@
 					<span id="total-price"></span>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-primary" onclick="confirmOrder()">Sifarişi
+					<button class="btn btn-primary" onclick="confirmOrder()" id="confirm-order-btn">Sifarişi
 						təsdiqlə</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Bağla</button>
 				</div>
@@ -165,6 +165,11 @@ book.pageCount+"'>"
 
 		function openBasket() {
 			fillBaskeTable();
+			if(basketBooks.length==0){
+				document.getElementById('confirm-order-btn').style.display='none';
+			}else{
+				document.getElementById('confirm-order-btn').style.display='block';
+			}
 		}
 		function deleteBasketBook(bookId) {
 			for (var i = 0; i < basketBooks.length; i++) {
@@ -176,7 +181,12 @@ book.pageCount+"'>"
 			localStorage.setItem('basketBooks', JSON.stringify(basketBooks));
 			openBasketButton.style.display = 'none';
 			basketBookCount.innerHTML = basketBooks.length;
-			localStorage.setItem('basketBooks', JSON.stringify(basketBooks));
+			
+			
+			//localStorage.setItem('basketBooks', JSON.stringify(basketBooks));
+			if(basketBooks.length==0){
+				document.getElementById('confirm-order-btn').style.display='none';
+			}
 			setTimeout(function() {
 				openBasketButton.style.display = 'block';
 			}, 10);
@@ -192,7 +202,7 @@ book.pageCount+"'>"
 						+ "<img class='basket-book-image' src='/files/"+basketBook.book.image+"' />";
 				basketBooksTableHTML += "</td><td>" + basketBook.book.name;
 				basketBooksTableHTML += "</td><td>" + basketBook.book.price;
-				basketBooksTableHTML += "</td><td><input "
+				basketBooksTableHTML += "</td><td><input min='0' max='1000' step='1' "
 						+ "oninput='bookCountChange(" + basketBook.book.id
 						+ ",this.value)' type='number' value='"
 						+ basketBook.count;
