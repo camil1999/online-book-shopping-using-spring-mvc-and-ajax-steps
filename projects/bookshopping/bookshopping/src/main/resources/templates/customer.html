@@ -100,7 +100,7 @@
 					var book = booksArray[i];
 					mainContentHTML += "<div class='book-container'>";
 					mainContentHTML += "<div class='book'>";
-					mainContentHTML += "<span class='book-image' style='background-image:url(/files/"
+					mainContentHTML += "<span class='book-image' style='background-image:url(files/"
 							+ book.image + ");'></span>";
 					mainContentHTML += "<span class='book-name' title='"+
 book.name+"'>"
@@ -125,7 +125,7 @@ book.pageCount+"'>"
 				mainContent.innerHTML = mainContentHTML;
 			}
 		};
-		xht.open("POST", "/rest/books/search-find-partial", true);
+		xht.open("POST", "	rest/books/search-find-partial", true);
 		xht.setRequestHeader("Content-type", "application/json");
 		var searchObject={search:'',begin:begin,length:length};
 		xht.send(JSON.stringify(searchObject));
@@ -199,7 +199,7 @@ book.pageCount+"'>"
 				var basketBook = basketBooks[i];
 				basketBooksTableHTML += "<tr><td>" + basketBook.book.id;
 				basketBooksTableHTML += "</td><td>"
-						+ "<img class='basket-book-image' src='/files/"+basketBook.book.image+"' />";
+						+ "<img class='basket-book-image' src='files/"+basketBook.book.image+"' />";
 				basketBooksTableHTML += "</td><td>" + basketBook.book.name;
 				basketBooksTableHTML += "</td><td>" + basketBook.book.price;
 				basketBooksTableHTML += "</td><td><input min='0' max='1000' step='1' "
@@ -247,7 +247,7 @@ book.pageCount+"'>"
 		function searchBook(searchText) {
 			searchTextGlobal=searchText;
 			mainContentHTML="";
-			xht.open("POST", "/rest/books/search-find-partial", true);
+			xht.open("POST", "rest/books/search-find-partial", true);
 			xht.setRequestHeader("Content-type", "application/json");
 			begin=0;
 			var searchObject = {
@@ -269,7 +269,7 @@ book.pageCount+"'>"
 				console.log('onScroll : ' + counter);
 				
 				begin+=20;
-				xht.open("POST", "/rest/books/search-find-partial", true);
+				xht.open("POST", "rest/books/search-find-partial", true);
 				xht.setRequestHeader("Content-type", "application/json");
 				var searchObject={search:searchTextGlobal,begin:begin,length:length};
 				xht.send(JSON.stringify(searchObject));
@@ -288,7 +288,7 @@ book.pageCount+"'>"
 						window.location.href="/confirm-order";	
 						}
 			};	
-			xhttp.open("POST", "/rest/orders/save-basket-books", true);
+			xhttp.open("POST", "rest/orders/save-basket-books", true);
 			xhttp.setRequestHeader("Content-type", "application/json");
 	
 			xhttp.send(JSON.stringify(basketBooks));
