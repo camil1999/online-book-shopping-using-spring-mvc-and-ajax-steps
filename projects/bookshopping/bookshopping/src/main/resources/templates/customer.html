@@ -247,6 +247,7 @@ book.pageCount+"'>"
 		function searchBook(searchText) {
 			searchTextGlobal=searchText;
 			mainContentHTML="";
+			booksArrayGlobal=[];
 			xht.open("POST", "rest/books/search-find-partial", true);
 			xht.setRequestHeader("Content-type", "application/json");
 			begin=0;

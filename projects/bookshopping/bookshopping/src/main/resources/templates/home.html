@@ -26,10 +26,11 @@ body {
 	<div class="container-fluid">
 		<h1 id="name" style="color: blue;">Kitab alış-verişi saytımıza
 			xoş gəlmisiniz</h1><br>
-		<a class="btn btn-primary" th:href="@{/books}">Kitabların siyahısı</a>
-		<a class="btn btn-warning" th:href="@{/customer}">Kitablar
-			alış-verişinə başla</a> <a class="btn btn-success" th:href="@{/orders}">Sifarişlərim</a>
-		<a class="btn btn-danger" th:href="@{/logout}">Çıxış</a>
+		<a th:if="${username}" class="btn btn-success" th:href="@{/books}">Kitabların siyahısı</a>
+		<a class="btn btn-primary" th:href="@{/customer}">Kitab
+			alış-verişinə başla</a> <a th:if="${username}"  class="btn btn-warning" th:href="@{/orders}">Sifarişlərim</a>
+			<a th:unless="${username}" class="btn btn-success" th:href="@{/show-login}">Giriş</a>
+		<a th:if="${username}" class="btn btn-danger" th:href="@{/logout}">Çıxış</a>
 	</div>
 
 
