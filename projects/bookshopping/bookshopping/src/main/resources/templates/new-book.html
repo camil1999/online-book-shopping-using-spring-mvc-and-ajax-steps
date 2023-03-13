@@ -55,9 +55,10 @@
 		<div class="form-group">
 			<label for="book-price">Qiymət:</label><br> <input
 				class="form-control" type="number" id="book-price"
-				th:field="*{price}" /> <span class="error-message"
+				th:field="*{price}" step="0.01" /> <span class="error-message"
 				th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
 		</div>
+
 
 		<div class="form-group">
 			<label for="book-author">Müəllif:</label><br> <input
@@ -69,7 +70,7 @@
 		<div class="form-group">
 			<label for="book-page-count">Səhifə sayı:</label><br> <input
 				class="form-control" type="number" id="book-page-count"
-				th:field="*{pageCount}"/> <span class="error-message"
+				th:field="*{pageCount}" /> <span class="error-message"
 				th:if="${#fields.hasErrors('pageCount')}" th:errors="*{pageCount}"></span>
 		</div>
 

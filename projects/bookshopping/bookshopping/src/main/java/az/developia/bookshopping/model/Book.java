@@ -16,12 +16,12 @@ public class Book {
 	@javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	private Integer id;
 	@NotEmpty(message = "Ad hissəsini boş qoymaq olmaz!")
-	@Size(max = 30, message = "Ad maksimum 30 simvoldan ibarət olmalıdır!")
+	@Size(max = 100, message = "Ad maksimum 100 simvoldan ibarət olmalıdır!")
 	@Size(min = 4, message = "Ad minimum 4 simvoldan ibarət olmalıdır!")
-	@Column(columnDefinition="VARCHAR(30)")
+	@Column(columnDefinition="VARCHAR(100)")
 	private String name;
-	@Size(max = 300, message = "Təsvir maksimum 300 simvoldan ibarət olmalıdır!")
-	@Column(columnDefinition="VARCHAR(300)")
+	@Size(max = 800, message = "Təsvir maksimum 800 simvoldan ibarət olmalıdır!")
+	@Column(columnDefinition="VARCHAR(800)")
 	private String description;
 	@NotNull(message = "Qiymət hissəsini boş qoymaq olmaz!")
 	@Min(value=0, message="Qiymət minimum 0 olmalıdır")

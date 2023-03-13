@@ -58,8 +58,8 @@
 					<span id="total-price"></span>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-primary" onclick="confirmOrder()" id="confirm-order-btn">Sifarişi
-						təsdiqlə</button>
+					<button class="btn btn-primary" onclick="confirmOrder()"
+						id="confirm-order-btn">Sifarişi təsdiqlə</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Bağla</button>
 				</div>
 			</div>
@@ -201,13 +201,13 @@ book.pageCount+"'>"
 				basketBooksTableHTML += "</td><td>"
 						+ "<img class='basket-book-image' src='files/"+basketBook.book.image+"' />";
 				basketBooksTableHTML += "</td><td>" + basketBook.book.name;
-				basketBooksTableHTML += "</td><td>" + basketBook.book.price;
-				basketBooksTableHTML += "</td><td><input min='0' max='1000' step='1' "
-						+ "oninput='bookCountChange(" + basketBook.book.id
-						+ ",this.value)' type='number' value='"
+				basketBooksTableHTML += "</td><td>" + basketBook.book.price.toFixed(2);
+				basketBooksTableHTML += "</td><td><input min='1' max='10000' step='1' "
+						+ "onchange='bookCountChange(" + basketBook.book.id
+						+ ",this)' type='number' value='"
 						+ basketBook.count;
-				basketBooksTableHTML += "' /></td><td id='book"+basketBook.book.id+"'>"
-						+ (basketBook.book.price * basketBook.count);
+				basketBooksTableHTML +="'onkeypress='checkCount(event)' /></td><td id='book"+basketBook.book.id+"'>"+
+				(basketBook.book.price.toFixed(2) * basketBook.count);
 				basketBooksTableHTML += "</td><td><button onclick='deleteBasketBook("
 						+ basketBook.book.id
 						+ ")'"
@@ -219,12 +219,17 @@ book.pageCount+"'>"
 			calculateTotalPrice();
 		}
 
-		function bookCountChange(bookId, count) {
+		function bookCountChange(bookId, countInput) {
+			if (countInput.value == '' || countInput.value == '0' ) {
+				countInput.value = "1";
+				                        
+				 }
+var count=Number(countInput.value);
 			for (var i = 0; i < basketBooks.length; i++) {
 				var basketBook = basketBooks[i];
 				if (basketBook.book.id == bookId) {
 					basketBook.count = count;
-					document.getElementById('book' + basketBook.book.id).innerHTML = (count * basketBook.book.price);
+					document.getElementById('book' + basketBook.book.id).innerHTML = (count * basketBook.book.price).toFixed(2);
 					localStorage.setItem('basketBooks', JSON
 							.stringify(basketBooks));
 					calculateTotalPrice();
@@ -241,7 +246,7 @@ book.pageCount+"'>"
 				var basketBook = basketBooks[i];
 				totalPriceNumber += basketBook.count * basketBook.book.price;
 			}
-			totalPrice.innerHTML = 'Ümumi qiymət: ' + totalPriceNumber + ' AZN';
+			totalPrice.innerHTML = 'Ümumi qiymət: ' + totalPriceNumber.toFixed(2) + ' AZN';
 		}
 
 		function searchBook(searchText) {
@@ -294,6 +299,21 @@ book.pageCount+"'>"
 	
 			xhttp.send(JSON.stringify(basketBooks));
 		}
+		function checkCount(event) {
+		     var code = event.charCode;
+		     if (code >= 48 && code <= 57) {
+		                     I
+		     } else {
+		         event.returnValue = false;
+		     }	
+		     if (Number(event.target.value + "" + event.key) > 10000) {
+		         event.target.value = "1";
+		        event.returnValue = false;
+		     }
+		     if (event.target.value === "0" && event.key === "0") {
+		    event.returnValue  = false;
+		     }
+		 }
 
 		// FUNCTION END 
 		// JAVASCRIPT END

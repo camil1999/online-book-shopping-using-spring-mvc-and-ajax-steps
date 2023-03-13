@@ -29,7 +29,7 @@ body {
 		<a th:if="${username}" class="btn btn-success" th:href="@{/books}">Kitabların siyahısı</a>
 		<a class="btn btn-primary" th:href="@{/customer}">Kitab
 			alış-verişinə başla</a> <a th:if="${username}"  class="btn btn-warning" th:href="@{/orders}">Sifarişlərim</a>
-			<a th:unless="${username}" class="btn btn-success" th:href="@{/show-login}">Giriş</a>
+			<a th:unless="${username}" class="btn btn-success	" th:href="@{/show-login}">Giriş</a>
 		<a th:if="${username}" class="btn btn-danger" th:href="@{/logout}">Çıxış</a>
 	</div>
 
